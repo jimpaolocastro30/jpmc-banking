@@ -18,7 +18,7 @@ export default function PersonnelLoginPage() {
   const { t } = useI18n();
   const errorText = useErrorText();
   const router = useRouter();
-  const [email, setEmail] = useState(roles[0].email);
+  const [email, setEmail] = useState<string>(roles[0].email);
   const [password, setPassword] = useState("Bankak#2026");
   const [mfaToken, setMfaToken] = useState("");
   const [code, setCode] = useState("");
