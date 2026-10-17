@@ -40,13 +40,13 @@ export function Button({
 }: ButtonHTMLAttributes<HTMLButtonElement> & { variant?: "primary" | "gold" | "ghost" | "danger" }) {
   const styles = {
     primary: "bg-forest text-white hover:bg-forest-2",
-    gold: "bg-gold text-ink",
+    gold: "bg-leaf text-white hover:bg-forest-2",
     ghost: "border border-sand-2 bg-white text-ink hover:bg-sand",
     danger: "bg-danger text-white",
   }[variant];
   return (
     <button
-      className={`inline-flex items-center justify-center rounded-2xl px-4 py-3 text-sm font-semibold transition disabled:opacity-50 ${styles} ${className}`}
+      className={`inline-flex items-center justify-center rounded-xl px-4 py-3 text-sm font-semibold tracking-tight transition disabled:opacity-50 ${styles} ${className}`}
       {...props}
     />
   );
@@ -56,7 +56,7 @@ export function Field({ label, ...props }: InputHTMLAttributes<HTMLInputElement>
   return (
     <label className="block space-y-1.5 text-sm">
       <span className="font-medium">{label}</span>
-      <input className="w-full rounded-2xl border border-sand-2 bg-white px-3 py-3 text-base outline-none ring-leaf focus:ring-2" {...props} />
+      <input className="w-full rounded-xl border border-sand-2 bg-white px-3 py-3 text-base text-ink outline-none ring-leaf focus:ring-2" {...props} />
     </label>
   );
 }
@@ -65,7 +65,7 @@ export function Select({ label, children, ...props }: SelectHTMLAttributes<HTMLS
   return (
     <label className="block space-y-1.5 text-sm">
       <span className="font-medium">{label}</span>
-      <select className="w-full rounded-2xl border border-sand-2 bg-white px-3 py-3 text-base outline-none ring-leaf focus:ring-2" {...props}>
+      <select className="w-full rounded-xl border border-sand-2 bg-white px-3 py-3 text-base text-ink outline-none ring-leaf focus:ring-2" {...props}>
         {children}
       </select>
     </label>
@@ -76,13 +76,13 @@ export function Area({ label, ...props }: TextareaHTMLAttributes<HTMLTextAreaEle
   return (
     <label className="block space-y-1.5 text-sm">
       <span className="font-medium">{label}</span>
-      <textarea className="w-full rounded-2xl border border-sand-2 bg-white px-3 py-3 text-base outline-none ring-leaf focus:ring-2" {...props} />
+      <textarea className="w-full rounded-xl border border-sand-2 bg-white px-3 py-3 text-base text-ink outline-none ring-leaf focus:ring-2" {...props} />
     </label>
   );
 }
 
 export function Panel({ children, className = "" }: { children: ReactNode; className?: string }) {
-  return <section className={`rounded-3xl bg-white p-4 shadow-sm shadow-forest/5 ${className}`}>{children}</section>;
+  return <section className={`rounded-2xl border border-sand-2 bg-white p-4 shadow-sm shadow-forest/5 ${className}`}>{children}</section>;
 }
 
 export function Empty({ text }: { text: string }) {
@@ -92,13 +92,13 @@ export function Empty({ text }: { text: string }) {
 export function LanguageSwitch() {
   const { lang, setLang, t } = useI18n();
   return (
-    <div className="flex rounded-full bg-white/15 p-1 text-xs font-semibold">
+    <div className="flex rounded-full bg-sand-2 p-1 text-xs font-semibold">
       {(["en", "fil"] as const).map((code) => (
         <button
           key={code}
           type="button"
           onClick={() => setLang(code)}
-          className={`rounded-full px-3 py-1 ${lang === code ? "bg-gold text-ink" : "text-inherit"}`}
+          className={`rounded-full px-3 py-1 ${lang === code ? "bg-forest text-white" : "text-muted"}`}
         >
           {code === "en" ? t("common.english") : t("common.filipino")}
         </button>

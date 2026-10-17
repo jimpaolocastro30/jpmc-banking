@@ -41,7 +41,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
         setLang(profile.language);
       })
       .catch(() => {
-        window.location.href = "/admin/login";
+        window.location.href = "/personnel";
       });
   }, [pathname, setLang]);
 
@@ -53,7 +53,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
       <div className="min-h-screen bg-sand md:grid md:grid-cols-[240px_1fr]">
         <aside className="flex flex-col bg-forest text-sand md:min-h-screen">
           <div className="px-5 py-6">
-            <p className="font-serif text-3xl text-gold">Bankak</p>
+            <p className="text-3xl font-semibold tracking-tight text-white">Bankak</p>
             <p className="text-xs uppercase tracking-[0.16em] text-sand/60">{t("admin.title")}</p>
           </div>
           <nav className="flex gap-2 overflow-x-auto px-3 pb-4 md:block md:space-y-1 md:px-3">
@@ -71,7 +71,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
               className="mt-3 text-sm text-gold"
               onClick={async () => {
                 await api("/api/auth/admin/logout", { method: "POST" });
-                router.push("/admin/login");
+                router.push("/personnel");
               }}
             >
               {t("common.signOut")}

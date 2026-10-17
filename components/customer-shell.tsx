@@ -57,7 +57,7 @@ export function CustomerShell({ children }: { children: React.ReactNode }) {
       {links.map((link) => {
         const active = link.href === "/home" ? pathname === "/home" : pathname === link.href || pathname.startsWith(`${link.href}/`);
         return (
-          <Link key={link.href} href={link.href} className={`px-0.5 py-2 text-center text-[10px] font-semibold leading-tight ${active ? "text-forest" : "text-muted"}`}>
+          <Link key={link.href} href={link.href} className={`rounded-lg px-0.5 py-2 text-center text-[10px] font-semibold leading-tight ${active ? "bg-leaf/10 text-leaf" : "text-muted"}`}>
             {t(link.key)}
           </Link>
         );
@@ -82,7 +82,7 @@ export function PageHeader({ title, back, action }: { title: string; back?: stri
             {t("common.back")}
           </Link>
         ) : null}
-        <h1 className="font-serif text-3xl">{title}</h1>
+        <h1 className="text-3xl font-semibold tracking-tight">{title}</h1>
       </div>
       {action}
     </header>

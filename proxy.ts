@@ -23,11 +23,13 @@ export async function proxy(request: NextRequest) {
   if (pathname === "/login" && customerOk) {
     return NextResponse.redirect(new URL("/home", request.url));
   }
+  if (pathname === "/personnel" || pathname === "/admin/login") {
+    if (staffOk) return NextResponse.redirect(new URL("/admin/dashboard", request.url));
+    if (pathname === "/admin/login") return NextResponse.redirect(new URL("/personnel", request.url));
+    return NextResponse.next();
+  }
   if (pathname.startsWith("/admin")) {
-    if (pathname === "/admin/login") {
-      return staffOk ? NextResponse.redirect(new URL("/admin/dashboard", request.url)) : NextResponse.next();
-    }
-    if (!staffOk) return NextResponse.redirect(new URL("/admin/login", request.url));
+    if (!staffOk) return NextResponse.redirect(new URL("/personnel", request.url));
     return NextResponse.next();
   }
   if (customerRoots.some((root) => pathname === root || pathname.startsWith(`${root}/`)) && !customerOk) {

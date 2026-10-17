@@ -1,3 +1,4 @@
+import { authenticator } from "otplib";
 import { z } from "zod";
 import { currentCustomer, loginCustomer, logoutCustomer, publicCustomer } from "@/lib/auth";
 import { currentStaff, loginStaff, logoutStaff, publicStaff, verifyStaffMfa } from "@/lib/auth";
@@ -51,6 +52,9 @@ export async function GET(_request: Request, context: { params: Promise<{ slug: 
         Notification.countDocuments({ customerId: customer._id, read: false }),
       ]);
       return { ...publicCustomer(customer), currency: settings.currency, unread };
+    }
+    if (key === "admin/demo-code") {
+      return { code: authenticator.generate("JBSWY3DPEHPK3PXP"), secondsRemaining: authenticator.timeRemaining() };
     }
     if (key === "admin/me") {
       const { staff } = await currentStaff();

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useErrorText, useI18n } from "@/components/i18n";
@@ -34,10 +35,10 @@ export default function LoginPage() {
     <MobileFrame>
       <main className="flex min-h-full flex-col justify-center px-6 py-10">
         <div className="mb-8 flex items-center justify-between gap-3">
-          <p className="font-serif text-3xl">Bankak</p>
+          <p className="text-3xl font-semibold tracking-tight text-forest">Bankak</p>
           <LanguageSwitch />
         </div>
-        <h1 className="font-serif text-4xl">{t("login.welcome")}</h1>
+        <h1 className="text-4xl font-semibold tracking-tight text-forest">{t("login.welcome")}</h1>
         <p className="mt-2 text-muted">{t("login.subtitle")}</p>
         <form onSubmit={submit} className="mt-8 space-y-4">
           <Field label={t("login.identifier")} value={identifier} onChange={(event) => setIdentifier(event.target.value)} autoComplete="username" />
@@ -47,6 +48,9 @@ export default function LoginPage() {
             {pending ? t("common.loading") : t("common.signIn")}
           </Button>
         </form>
+        <Link href="/personnel" className="mt-6 text-sm font-semibold text-leaf">
+          {t("login.personnelSignIn")}
+        </Link>
       </main>
     </MobileFrame>
   );

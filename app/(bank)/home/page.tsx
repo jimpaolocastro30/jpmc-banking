@@ -41,8 +41,8 @@ export default function HomePage() {
       <header className="bg-forest px-5 pb-16 pt-6 text-sand">
         <div className="flex items-start justify-between">
           <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-gold">Bankak</p>
-            <h1 className="mt-2 font-serif text-3xl">{t("home.hello", { name: first })}</h1>
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-gold-2">Bankak</p>
+            <h1 className="mt-2 text-3xl font-semibold tracking-tight">{t("home.hello", { name: first })}</h1>
           </div>
           <Link href="/notifications" className="relative rounded-full bg-white/10 px-3 py-2 text-sm">
             {me?.unread ? me.unread : "0"}
@@ -57,7 +57,7 @@ export default function HomePage() {
               {me?.hideBalance ? t("common.show") : t("common.hide")}
             </button>
           </div>
-          <p className="mt-2 font-serif text-4xl">
+          <p className="mt-2 text-4xl font-semibold tracking-tight">
             {formatMoney(primary?.availableBalance, primary?.currency ?? me?.currency, lang, me?.hideBalance)}
           </p>
           <p className="mt-1 text-sm text-muted">{primary ? `${primary.name} · ${primary.maskedNumber}` : ""}</p>
@@ -71,7 +71,7 @@ export default function HomePage() {
               ["/payments?tab=bills", "home.bills"],
               ["/cards", "home.cards"],
             ].map(([href, key]) => (
-              <Link key={href} href={href} className="rounded-2xl bg-white px-1.5 py-3 text-center text-[11px] font-semibold leading-tight shadow-sm">
+              <Link key={href} href={href} className="rounded-xl border border-sand-2 bg-white px-1.5 py-3 text-center text-[11px] font-semibold leading-tight text-forest">
                 {t(key)}
               </Link>
             ))}
@@ -81,7 +81,7 @@ export default function HomePage() {
           <p className="mb-2 text-sm font-semibold">{t("home.accounts")}</p>
           <div className="flex gap-3 overflow-x-auto pb-1">
             {accounts.map((account) => (
-              <Link key={account.id} href={`/accounts/${account.id}`} className="min-w-44 rounded-3xl bg-forest-2 p-4 text-sand">
+              <Link key={account.id} href={`/accounts/${account.id}`} className="min-w-44 rounded-2xl bg-forest-2 p-4 text-sand">
                 <p className="text-xs uppercase tracking-wide text-gold-2">{t(`accounts.${account.type}`)}</p>
                 <p className="mt-3 font-serif text-2xl">{formatMoney(account.availableBalance, account.currency, lang, me?.hideBalance)}</p>
                 <p className="mt-2 text-xs text-sand/70">{account.maskedNumber}</p>
