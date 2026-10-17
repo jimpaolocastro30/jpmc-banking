@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
 import { useI18n } from "@/components/i18n";
+import { MobileFrame } from "@/components/mobile-frame";
 import { api } from "@/lib/client";
 import type { CustomerProfile } from "@/lib/types";
 
@@ -51,30 +52,22 @@ export function CustomerShell({ children }: { children: React.ReactNode }) {
     };
   }, [pathname, setLang]);
 
+  const navigation = (
+    <nav className="grid grid-cols-5 border-t border-sand-2 bg-white px-1 pb-[max(0.5rem,env(safe-area-inset-bottom))] pt-1">
+      {links.map((link) => {
+        const active = link.href === "/home" ? pathname === "/home" : pathname === link.href || pathname.startsWith(`${link.href}/`);
+        return (
+          <Link key={link.href} href={link.href} className={`px-0.5 py-2 text-center text-[10px] font-semibold leading-tight ${active ? "text-forest" : "text-muted"}`}>
+            {t(link.key)}
+          </Link>
+        );
+      })}
+    </nav>
+  );
+
   return (
     <CustomerContext.Provider value={{ me, refresh }}>
-      <div className="min-h-screen lg:grid lg:grid-cols-[minmax(260px,380px)_1fr]">
-        <aside className="hidden flex-col justify-between bg-forest p-10 text-sand lg:flex">
-          <div>
-            <p className="font-serif text-5xl text-gold">Bankak</p>
-            <p className="mt-6 max-w-xs text-lg leading-relaxed text-sand/80">{t("tagline")}</p>
-          </div>
-          <p className="max-w-xs text-sm text-sand/60">{t("demoNote")}</p>
-        </aside>
-        <div className="mx-auto flex min-h-screen w-full max-w-md flex-col">
-          <div className="flex-1 pb-4">{children}</div>
-          <nav className="sticky bottom-0 grid grid-cols-5 border-t border-sand-2 bg-white/95 px-1 py-2 backdrop-blur">
-            {links.map((link) => {
-              const active = link.href === "/home" ? pathname === "/home" : pathname === link.href || pathname.startsWith(`${link.href}/`);
-              return (
-                <Link key={link.href} href={link.href} className={`px-1 py-2 text-center text-[11px] font-semibold ${active ? "text-forest" : "text-muted"}`}>
-                  {t(link.key)}
-                </Link>
-              );
-            })}
-          </nav>
-        </div>
-      </div>
+      <MobileFrame footer={navigation}>{children}</MobileFrame>
     </CustomerContext.Provider>
   );
 }

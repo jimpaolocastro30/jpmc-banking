@@ -71,7 +71,7 @@ export default function HomePage() {
               ["/payments?tab=bills", "home.bills"],
               ["/cards", "home.cards"],
             ].map(([href, key]) => (
-              <Link key={href} href={href} className="rounded-2xl bg-white px-2 py-3 text-center text-xs font-semibold shadow-sm">
+              <Link key={href} href={href} className="rounded-2xl bg-white px-1.5 py-3 text-center text-[11px] font-semibold leading-tight shadow-sm">
                 {t(key)}
               </Link>
             ))}

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useErrorText, useI18n } from "@/components/i18n";
+import { MobileFrame } from "@/components/mobile-frame";
 import { Button, Field, LanguageSwitch } from "@/components/ui";
 import { api } from "@/lib/client";
 
@@ -30,13 +31,10 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="min-h-screen bg-sand lg:grid lg:grid-cols-[380px_1fr]">
-      <aside className="hidden bg-forest p-10 text-sand lg:block">
-        <p className="font-serif text-5xl text-gold">Bankak</p>
-      </aside>
-      <div className="mx-auto flex min-h-screen w-full max-w-md flex-col justify-center px-6 py-10">
-        <div className="mb-8 flex items-center justify-between">
-          <p className="font-serif text-3xl lg:hidden">Bankak</p>
+    <MobileFrame>
+      <main className="flex min-h-full flex-col justify-center px-6 py-10">
+        <div className="mb-8 flex items-center justify-between gap-3">
+          <p className="font-serif text-3xl">Bankak</p>
           <LanguageSwitch />
         </div>
         <h1 className="font-serif text-4xl">{t("login.welcome")}</h1>
@@ -49,7 +47,7 @@ export default function LoginPage() {
             {pending ? t("common.loading") : t("common.signIn")}
           </Button>
         </form>
-      </div>
-    </main>
+      </main>
+    </MobileFrame>
   );
 }

@@ -56,7 +56,7 @@ export function Field({ label, ...props }: InputHTMLAttributes<HTMLInputElement>
   return (
     <label className="block space-y-1.5 text-sm">
       <span className="font-medium">{label}</span>
-      <input className="w-full rounded-2xl border border-sand-2 bg-white px-3 py-3 outline-none ring-leaf focus:ring-2" {...props} />
+      <input className="w-full rounded-2xl border border-sand-2 bg-white px-3 py-3 text-base outline-none ring-leaf focus:ring-2" {...props} />
     </label>
   );
 }
@@ -65,7 +65,7 @@ export function Select({ label, children, ...props }: SelectHTMLAttributes<HTMLS
   return (
     <label className="block space-y-1.5 text-sm">
       <span className="font-medium">{label}</span>
-      <select className="w-full rounded-2xl border border-sand-2 bg-white px-3 py-3 outline-none ring-leaf focus:ring-2" {...props}>
+      <select className="w-full rounded-2xl border border-sand-2 bg-white px-3 py-3 text-base outline-none ring-leaf focus:ring-2" {...props}>
         {children}
       </select>
     </label>
@@ -76,7 +76,7 @@ export function Area({ label, ...props }: TextareaHTMLAttributes<HTMLTextAreaEle
   return (
     <label className="block space-y-1.5 text-sm">
       <span className="font-medium">{label}</span>
-      <textarea className="w-full rounded-2xl border border-sand-2 bg-white px-3 py-3 outline-none ring-leaf focus:ring-2" {...props} />
+      <textarea className="w-full rounded-2xl border border-sand-2 bg-white px-3 py-3 text-base outline-none ring-leaf focus:ring-2" {...props} />
     </label>
   );
 }

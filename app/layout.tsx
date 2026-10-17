@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Fraunces, Outfit } from "next/font/google";
 import { LanguageProvider } from "@/components/i18n";
 import "./globals.css";
@@ -9,6 +9,13 @@ const fraunces = Fraunces({ subsets: ["latin"], variable: "--font-fraunces" });
 export const metadata: Metadata = {
   title: "Bankak",
   description: "Bankak mobile banking and admin portal",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#063527",
 };
 
 export const instant = false;
